@@ -2,9 +2,11 @@ name: Variables
 on: push
 jobs:
   print:
-    runs-on: ubunts-latest
+    runs-on: ubuntu-latest
     env:
       USERNAME: ${{ vars.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
     steps:
       - run: echo "${USERNAME}"
-      - uses: actions/checkout@v4
+      - run: echo "${PASSWORD}"
+      - run: echo "${PASSWORD:0:1} ${PASSWORD#?}"
